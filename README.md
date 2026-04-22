@@ -5,7 +5,7 @@
 This repository contains research materials for the DH2026 contribution **“From Genes to Tokens: A GWAS-inspired Approach for Interpretable Stylometric Analysis”**. The project explores a stylometric workflow inspired by **genome-wide association studies (GWAS)** and applies it to **token-frequency variation** in literary corpora.
 
 <p align="center">
-  <img src="imgs/pipeline_dmIHla2n" alt="Stylometric GWAS pipeline" width="900">
+  <img src="imgs/pipeline_dmIHla2n.png" alt="Stylometric GWAS pipeline" width="900">
 </p>
 
 ## Overview
