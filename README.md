@@ -46,8 +46,6 @@ The conceptual bridge to GWAS is methodological: **many univariate tests with ex
 
 ## Citation
 
-If you reuse this workflow, cite the DH2026 contribution when applicable and link to [DH2026](https://dh2026.adho.org/). For the Alliance of Digital Humanities Organizations conference series, see the ADHO website linked from the conference page.
+If you reuse this workflow, cite the DH2026 contribution when applicable and link to [DH2026](https://dh2026.adho.org/). The link to the conference proceedings will be added once it becomes available.
 
-## Licence
 
-Specify licence here if you distribute corpus-derived files or code publicly.
