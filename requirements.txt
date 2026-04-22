@@ -1,0 +1,12 @@
+# Core analysis (GWAS_text.ipynb)
+pandas>=2.0
+numpy>=1.24
+scikit-learn>=1.3
+tqdm>=4.65
+matplotlib>=3.7
+plotly>=5.18
+statsmodels>=0.14
+scipy>=1.11
+
+# Lemmatisation (lemmatization.ipynb)
+spacy>=3.7
