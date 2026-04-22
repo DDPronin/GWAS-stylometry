@@ -1,51 +1,105 @@
-# GWAS-inspired stylometry
+# From Genes to Tokens: GWAS-inspired stylometry
 
 [![Conference](https://img.shields.io/badge/DH2026-Daejeon-blue)](https://dh2026.adho.org/)
 
-This repository supports research that will be presented at [DH2026](https://dh2026.adho.org/) (Daejeon, July 27–31, 2026). It holds reproducible notebooks and auxiliary assets for a **genome-wide association study (GWAS)–inspired** procedure applied to **token frequencies** in literary corpora (working title **“From Genes to Tokens”**).
+This repository contains research materials for the DH2026 contribution **“From Genes to Tokens: A GWAS-inspired Approach for Interpretable Stylometric Analysis”**. The project explores a stylometric workflow inspired by **genome-wide association studies (GWAS)** and applies it to **token-frequency variation** in literary corpora.
 
-## What this project does
+<p align="center">
+  <img src="imgs/pipeline_dmIHla2n" alt="Stylometric GWAS pipeline" width="900">
+</p>
 
-Classical stylometry often compresses texts into opaque vector spaces. Here, each **token type** (words and punctuation treated as separate types) plays the role of a genetic marker (“SNP”): its **relative frequency** across documents is treated as a quantitative trait. A **binary outcome**—for example, chunks attributed to one author versus all others—is regressed on that frequency using **logistic regression**. The resulting coefficients and *p*-values support **Manhattan-style** and **volcano** plots, multiple-testing correction, **QQ plots**, and genomic-control-style **inflation (λ)** diagnostics, yielding an interpretable list of marker-like lexical and punctuational contrasts.
+## Overview
 
-The conceptual bridge to GWAS is methodological: **many univariate tests with explicit multiple-testing control and visual diagnostics**, not a claim of biological genetics.
+Traditional stylometric methods often reduce texts to aggregate distance scores or dense vector representations that are difficult to interpret at the level of individual lexical features. This project proposes a complementary approach: instead of asking only whether two texts or authors are distant, it asks **which tokens contribute significantly to that contrast**.
 
-## Repository layout
+The key analogy to GWAS is methodological. In classical GWAS, each genetic variant is tested separately for association with a phenotype. Here, each **token type** is treated as an analogous feature, and its standardized frequency is tested for association with a target author or class. This produces an interpretable map of stylistic markers supported by:
 
-| Path | Role |
-|------|------|
-| `lemmatization.ipynb` | Lemmatises plain-text novels under `data/<language subset>/` with spaCy; writes parallel files under `data/lemmas/<same structure>/`. |
-| `GWAS_text.ipynb` | Builds a term–chunk matrix with `sklearn` (`CountVectorizer` counts + `TfidfVectorizer(use_idf=False)` for TF), runs per-token logistic regressions, applies Bonferroni correction (configurable to Benjamini–Hochberg), and produces diagnostic plots. |
-| `data/` | Corpus fragments (lemma layers used by the analysis notebook). Large or rights-restricted files may be omitted from a public mirror; structure is preserved. |
-| `imgs/` | Exported figures (e.g. Manhattan plots) for documentation or reuse. |
+- per-token logistic regression,
+- multiple-testing correction,
+- Manhattan plots,
+- volcano plots,
+- QQ plots,
+- genomic-control-style inflation diagnostics.
+
+The goal is not to import biological claims into stylometry, but to adapt the **feature-wise inferential logic** of GWAS for literary and linguistic analysis.
+
+## Repository structure
+
+| Path | Description |
+|------|-------------|
+| `lemmatization.ipynb` | Lemmatises plain-text novels under `data/<language subset>/` using spaCy and writes processed files to `data/lemmas/<same structure>/`. |
+| `GWAS_text.ipynb` | Builds the term–chunk matrix, runs per-token logistic regressions, applies multiple-testing correction, and produces diagnostic visualisations. |
+| `data/` | Corpus fragments and lemma-based inputs used by the notebooks. Some large or copyright-restricted materials may be omitted in the public version. |
+| `imgs/` | Exported figures and workflow illustrations used in the documentation. |
+
+## Workflow
+
+The analysis proceeds in several stages:
+
+1. **Text preprocessing**  
+   Literary texts are lemmatised and segmented into chunks of fixed size.
+
+2. **Feature extraction**  
+   A term–chunk matrix is constructed from token frequencies.
+
+3. **Per-token regression**  
+   For each token, a separate logistic-regression model is fitted to test its association with a target author or class.
+
+4. **Multiple-testing correction**  
+   Raw *p*-values are corrected to control false positives.
+
+5. **Interpretation and visualisation**  
+   Significant features are visualised with Manhattan and volcano plots and interpreted as potential stylometric markers.
 
 ## Quick start
 
-1. **Python environment** (3.10+ recommended):
+### 1. Create an environment
 
-   ```bash
-   python -m venv .venv
-   .venv\Scripts\activate   # Windows
-   pip install -r requirements.txt
-   ```
+```bash
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
+```
 
-2. **spaCy models** (for `lemmatization.ipynb`):
+For Unix-like systems:
 
-   ```bash
-   python -m spacy download en_core_web_sm
-   python -m spacy download de_core_news_sm
-   python -m spacy download ru_core_news_sm
-   ```
+```bash
+source .venv/bin/activate
+pip install -r requirements.txt
+```
 
-3. Run notebooks top-to-bottom after placing lemma files under `data/lemmas/...` as expected by `GWAS_text.ipynb` (default pattern: `data/lemmas/English_25_3`).
+### 2. Install spaCy models
 
-## Notes on statistics
+```bash
+python -m spacy download en_core_web_sm
+python -m spacy download de_core_news_sm
+python -m spacy download ru_core_news_sm
+```
 
-- **Multiple testing:** The notebook defaults to **Bonferroni** (`statsmodels.stats.multitest.multipletests`). The introduction cell explains how to switch to **`method="fdr_bh"`** if your analysis plan uses false discovery rate control instead.
-- **Interpretation:** Significant associations point to **usage differences** conditioned on the chosen contrast (author, genre slice, etc.); they do not by themselves imply causality or immutable stylistic “genes.”
+### 3. Run the notebooks
+
+Place the lemma files into the expected `data/lemmas/...` directory structure and run:
+
+- `lemmatization.ipynb` for preprocessing,
+- `GWAS_text.ipynb` for the statistical analysis and plots.
+
+## Statistical notes
+
+- **Regression model**  
+  Each token is tested independently in a univariate logistic-regression framework.
+
+- **Multiple testing**  
+  The default correction is **Bonferroni**, implemented through `statsmodels.stats.multitest.multipletests`. This can be changed to **Benjamini–Hochberg** (`method="fdr_bh"`) if false discovery rate control is preferred.
+
+- **Interpretation**  
+  Significant tokens indicate statistically supported differences in usage under the selected contrast. They should be interpreted as **markers of association**, not as causal or essential features of an author’s style.
 
 ## Citation
 
-If you reuse this workflow, cite the DH2026 contribution when applicable and link to [DH2026](https://dh2026.adho.org/). The link to the conference proceedings will be added once it becomes available.
+If you reuse this workflow, please cite the DH2026 contribution when applicable and link to [DH2026](https://dh2026.adho.org/).  
+The link to the conference proceedings will be added once it becomes available.  
+For the Alliance of Digital Humanities Organizations conference series, see the ADHO website linked from the conference page.
 
+## Licence
 
+Add the appropriate licence here if you distribute the code or any corpus-derived materials publicly.
