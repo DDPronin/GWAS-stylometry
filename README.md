@@ -1,4 +1,4 @@
-# Research materials: GWAS-inspired stylometry (DH2026)
+GWAS-inspired stylometry
 
 [![Conference](https://img.shields.io/badge/DH2026-Daejeon-blue)](https://dh2026.adho.org/)
 
