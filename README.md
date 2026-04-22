@@ -99,7 +99,3 @@ Place the lemma files into the expected `data/lemmas/...` directory structure an
 If you reuse this workflow, please cite the DH2026 contribution when applicable and link to [DH2026](https://dh2026.adho.org/).  
 The link to the conference proceedings will be added once it becomes available.  
 For the Alliance of Digital Humanities Organizations conference series, see the ADHO website linked from the conference page.
-
-## Licence
-
-Add the appropriate licence here if you distribute the code or any corpus-derived materials publicly.
