@@ -2,7 +2,7 @@
 
 [![Conference](https://img.shields.io/badge/DH2026-Daejeon-blue)](https://dh2026.adho.org/)
 
-This repository contains research materials for the DH2026 contribution **“From Genes to Tokens: A GWAS-inspired Approach for Interpretable Stylometric Analysis”** [arXiv:2606.09543](https://arxiv.org/abs/2606.09543). The project explores a stylometric workflow inspired by **genome-wide association studies (GWAS)** and applies it to **token-frequency variation** in literary corpora.
+This repository contains research materials for the DH2026 contribution **“From Genes to Tokens: A GWAS-inspired Approach for Interpretable Stylometric Analysis”** (preprint is here: [arXiv:2606.09543](https://arxiv.org/abs/2606.09543)). The project explores a stylometric workflow inspired by **genome-wide association studies (GWAS)** and applies it to **token-frequency variation** in literary corpora.
 
 <p align="center">
   <img src="imgs/pipeline_dmIHla2n.png" alt="Stylometric GWAS pipeline" width="900">
