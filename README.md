@@ -4,6 +4,8 @@
 
 This repository contains research materials for the DH2026 contribution **“From Genes to Tokens: A GWAS-inspired Approach for Interpretable Stylometric Analysis”**. The project explores a stylometric workflow inspired by **genome-wide association studies (GWAS)** and applies it to **token-frequency variation** in literary corpora.
 
+**Preprint:** [arXiv:2606.09543](https://arxiv.org/abs/2606.09543)
+
 <p align="center">
   <img src="imgs/pipeline_dmIHla2n.png" alt="Stylometric GWAS pipeline" width="900">
 </p>
@@ -93,6 +95,13 @@ Place the lemma files into the expected `data/lemmas/...` directory structure an
 
 - **Interpretation**  
   Significant tokens indicate statistically supported differences in usage under the selected contrast. They should be interpreted as **markers of association**, not as causal or essential features of an author’s style.
+
+  ## Citation
+
+If you use this workflow, please cite the DH2026 contribution and the preprint:
+
+- **Preprint:** [arXiv:2606.09543](https://arxiv.org/abs/2606.09543)  
+- Conference proceedings link will be added when available.
 
 ## Citation
 
